@@ -45,4 +45,13 @@ class TestBooksCollector:
         collector.set_book_genre("Простоквашино", "Мультфильмы")
         assert collector.get_books_with_specific_genre("Детективы") == ['Шерлок Хомс', 'Десять негритят']
 
-        
+    def test_get_books_for_children_filters_by_allowed_genres_list(self):
+        collector = BooksCollector()
+        collector.add_new_book('Шерлок Хомс')
+        collector.add_new_book('Простоквашино')
+        collector.add_new_book('Путешествие Алисы')
+        collector.set_book_genre("Шерлок Хомс", "Детективы")
+        collector.set_book_genre("Простоквашино", "Мультфильмы")
+        collector.set_book_genre("Путешествие Алисы", "Фантастика")
+        assert collector.get_books_for_children() == ["Простоквашино", "Путешествие Алисы"]
+
