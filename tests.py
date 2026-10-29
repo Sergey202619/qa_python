@@ -62,3 +62,13 @@ class TestBooksCollector:
         collector.add_book_in_favorites("Шерлок Хомс")
         assert collector.get_list_of_favorites_books() == ["Шерлок Хомс"]
 
+    def test_add_book_in_favorites_repeated_add_book(self):
+        collector = BooksCollector()
+        collector.add_new_book('Шерлок Хомс')
+        collector.set_book_genre("Шерлок Хомс", "Детективы")
+        collector.add_book_in_favorites("Шерлок Хомс")
+        collector.add_book_in_favorites("Шерлок Хомс")
+        assert collector.get_list_of_favorites_books() == ["Шерлок Хомс"]
+        assert len(collector.get_list_of_favorites_books()) == 1
+
+
