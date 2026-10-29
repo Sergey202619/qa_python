@@ -55,3 +55,10 @@ class TestBooksCollector:
         collector.set_book_genre("Путешествие Алисы", "Фантастика")
         assert collector.get_books_for_children() == ["Простоквашино", "Путешествие Алисы"]
 
+    def test_add_book_in_favorites_one_book(self):
+        collector = BooksCollector()
+        collector.add_new_book('Шерлок Хомс')
+        collector.set_book_genre("Шерлок Хомс", "Детективы")
+        collector.add_book_in_favorites("Шерлок Хомс")
+        assert collector.get_list_of_favorites_books() == ["Шерлок Хомс"]
+
