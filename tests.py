@@ -34,4 +34,15 @@ class TestBooksCollector:
         collector.add_new_book('Шерлок Хомс')
         collector.set_book_genre("Шерлок Хомс", "Детективы")
         assert collector.get_book_genre("Шерлок Хомс") == "Детективы"
-    
+
+    def test_get_books_with_specific_genre__detectives_returns_two_books(self):
+        collector = BooksCollector()
+        collector.add_new_book('Шерлок Хомс')
+        collector.add_new_book('Десять негритят')
+        collector.add_new_book('Простоквашино')
+        collector.set_book_genre("Шерлок Хомс", "Детективы")
+        collector.set_book_genre("Десять негритят", "Детективы")
+        collector.set_book_genre("Простоквашино", "Мультфильмы")
+        assert collector.get_books_with_specific_genre("Детективы") == ['Шерлок Хомс', 'Десять негритят']
+
+        
