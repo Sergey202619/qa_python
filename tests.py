@@ -92,3 +92,15 @@ class TestBooksCollector:
         collector.set_book_genre("Путешествие Алисы", "Фантастика")
         assert collector.get_books_genre() == {"Шерлок Хомс": "Детективы", "Путешествие Алисы": "Фантастика"}
 
+    import pytest
+    @pytest.mark.parametrize("name_book, expected_count", [
+        ("Название книги содержит 39 символов!!!!", 1),
+        ("Название книги содержит 40 символов!!!!!", 1),
+        ("Название книги содержит 41 символов!!!!!!", 0)
+    ])
+    def test_test_add_new_book_check_boundary_values_name_book(self, name_book, expected_count):
+        collector = BooksCollector()
+        collector.add_new_book(name_book)
+        assert len(collector.get_books_genre()) == expected_count
+
+
