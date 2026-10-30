@@ -77,6 +77,16 @@ class TestBooksCollector:
         collector.set_book_genre("Шерлок Хомс", "Детективы")
         collector.add_book_in_favorites("Шерлок Хомс")
         collector.delete_book_from_favorites("Шерлок Хомс")
-        asert len(collector.get_list_of_favorites_books()) == 0
-        
+        assert len(collector.get_list_of_favorites_books()) == 0
+
+    def test_get_list_of_favorites_books_two_books(self):
+        collector = BooksCollector()
+        collector.add_new_book('Шерлок Хомс')
+        collector.add_new_book('Путешествие Алисы')
+        collector.add_book_in_favorites("Шерлок Хомс")
+        collector.add_book_in_favorites("Путешествие Алисы")
+        assert collector.get_list_of_favorites_books() == ['Шерлок Хомс', 'Путешествие Алисы']
+
+
+
 
